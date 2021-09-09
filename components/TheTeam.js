@@ -1,7 +1,7 @@
 const TheTeam = () => {
   return (
     <div className="overflow-x-auto flex flex-nowrap">
-      <div className="card bordered shadow-xl m-4 min-w-min">
+      <div className="card bordered shadow-md m-4 min-w-min">
         <div className="flex-row items-center space-x-4 card-body">
           <div className="avatar">
             <div className="rounded-full w-14 h-14 shadow">
@@ -17,7 +17,7 @@ const TheTeam = () => {
           </div>
         </div>
       </div>
-      <div className="card bordered shadow-xl m-4 min-w-min">
+      <div className="card bordered shadow-md m-4 min-w-min">
         <div className="flex-row items-center space-x-4 card-body">
           <div className="avatar">
             <div className="rounded-full w-14 h-14 shadow">
@@ -33,7 +33,7 @@ const TheTeam = () => {
           </div>
         </div>
       </div>
-      <div className="card bordered shadow-xl m-4 min-w-min">
+      <div className="card bordered shadow-md m-4 min-w-min">
         <div className="flex-row items-center space-x-4 card-body">
           <div className="avatar">
             <div className="rounded-full w-14 h-14 shadow">
@@ -49,7 +49,7 @@ const TheTeam = () => {
           </div>
         </div>
       </div>
-      <div className="card bordered shadow-xl m-4 min-w-min">
+      <div className="card bordered shadow-md m-4 min-w-min">
         <div className="flex-row items-center space-x-4 card-body">
           <div className="avatar">
             <div className="rounded-full w-14 h-14 shadow">
@@ -65,7 +65,7 @@ const TheTeam = () => {
           </div>
         </div>
       </div>
-      <div className="card bordered shadow-xl m-4 min-w-min">
+      <div className="card bordered shadow-md m-4 min-w-min">
         <div className="flex-row items-center space-x-4 card-body">
           <div className="avatar">
             <div className="rounded-full w-14 h-14 shadow">
