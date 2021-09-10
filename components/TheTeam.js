@@ -1,6 +1,16 @@
 const TheTeam = () => {
+  function scrollCard(e) {
+    e.preventDefault();
+    const delta = Math.max(-1, Math.min(1, (e.nativeEvent.wheelDelta || -e.nativeEvent.detail)))
+    e.currentTarget.scrollLeft -= (delta * 50)
+  }
+  
   return (
-    <div className="overflow-x-auto flex flex-nowrap">
+    <div
+      className="overflow-x-auto flex flex-nowrap"
+      id="cards-parent"
+      onWheel={(e) => scrollCard(e)}
+    >
       <div className="card bordered shadow-md m-4 min-w-min">
         <div className="flex-row items-center space-x-4 card-body">
           <div className="avatar">
