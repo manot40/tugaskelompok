@@ -35,10 +35,11 @@ const FormTK1 = () => {
   function handleSubmit(e) {
     e.preventDefault();
     const inputState = () => {
-      const uploadInput = document.getElementsByClassName("upload");
-      for (let i = 0; i < uploadInput.length; i++) {
-        if (uploadInput.item(i).files.length == 0) return false;
-      }
+      if (
+        !data.avatar.fileName ||
+        !data.sertifikat ||
+        !data.resume
+      ) return false;
       return true;
     };
     if (!inputState()) {
