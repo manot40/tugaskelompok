@@ -222,7 +222,7 @@ const FormTK1 = () => {
             </label>
           </div>
         </form>
-        { isSubmit ? <TK1FormTable dataTabel={data} submit={isSubmit} /> : null }
+        { isSubmit ? <TK1FormTable dataTabel={data} /> : null }
       </div>
     </div>
   );
