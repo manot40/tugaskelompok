@@ -6,7 +6,7 @@ const FilterBar = ({ onStringChange, onCategoryChange, onSortChange }) => {
     <div className="w-full flex flex-row sm:flex-col flex-wrap mb-2">
       <input
         type="text"
-        placeholder="Ketik nama film"
+        placeholder="Cari nama film"
         className="input input-bordered sm:w-full flex-1 mr-2 min-h-12 mb-2"
         onChange={(e) => onStringChange("filterString", e.target.value)}
       />
@@ -16,7 +16,9 @@ const FilterBar = ({ onStringChange, onCategoryChange, onSortChange }) => {
       >
         <option value="all">Semua kategori</option>
         {categories.map((category) => (
-          <option value={category}>{capFirstLetter(category)}</option>
+          <option key={category} value={category}>
+            {capFirstLetter(category)}
+          </option>
         ))}
       </select>
       <select

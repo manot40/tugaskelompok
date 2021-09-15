@@ -1,10 +1,10 @@
 import { useRouter } from "next/router";
 
 const FilmDisplay = ({}) => {
-    const router = useRouter();
-    const { id } = router.query;
+  const router = useRouter();
+  const { id } = router.query;
 
-    return <div>{id}</div>
+  return <div>{id}</div>;
 };
 
 export default FilmDisplay;
