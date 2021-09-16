@@ -2,6 +2,7 @@ import { themeChange } from "theme-change";
 import { useEffect } from "react";
 import Head from "next/head";
 import "../assets/style.css";
+import "react-toastify/dist/ReactToastify.css"
 
 function App({ Component, pageProps }) {
   useEffect(() => {

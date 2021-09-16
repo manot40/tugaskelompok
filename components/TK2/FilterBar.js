@@ -14,7 +14,7 @@ const FilterBar = ({ onStringChange, onCategoryChange, onSortChange }) => {
         className="select select-bordered flex-1 sm:max-w-full max-w-max mb-2 mr-2"
         onChange={(e) => onCategoryChange("filterCategory", e.target.value)}
       >
-        <option value="all">Semua kategori</option>
+        <option value="">Semua kategori</option>
         {categories.map((category) => (
           <option key={category} value={category}>
             {capFirstLetter(category)}

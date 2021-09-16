@@ -1,6 +1,4 @@
-import { capFirstLetter } from "./stringUtility";
-import { trimString } from "./stringUtility";
+import { capFirstLetter, trimString } from "./stringUtility";
+import { objKeysToArray, filterArray, sortArray } from "./arrayUtility";
 
-import { objKeysToArray } from "./arrayUtility";
-
-export { capFirstLetter, trimString, objKeysToArray };
+export { capFirstLetter, trimString, objKeysToArray, filterArray, sortArray };

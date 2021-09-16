@@ -1,7 +1,7 @@
 import { useReducer, useEffect } from "react";
 import Link from "next/link";
 import { v4 as uuid } from "uuid";
-import { objKeysToArray, trimString } from "../helpers/index";
+import { objKeysToArray, trimString, filterArray, sortArray } from "../helpers/index";
 import AddFilmModal from "./AddFilmModal";
 import sampleFilm from "../../exampleData/FilmExample";
 
@@ -20,7 +20,7 @@ const reducer = (state, action) => {
   }
 };
 
-const ListItem = ({ filterString, filterCategory }) => {
+const ListItem = ({ filterString, filterCategory, sortBy }) => {
   const [listFilm, dispatch] = useReducer(reducer, { ...sampleFilm });
 
   useEffect(() => {
@@ -46,24 +46,22 @@ const ListItem = ({ filterString, filterCategory }) => {
     setLocalStorage(payload);
   }
 
-  const filtered = () => {
-    return objKeysToArray(listFilm);
+  const filtered = (string, category) => {
+    const list = objKeysToArray(listFilm);
+    sortArray(list, 'name', sortBy);
+    console.log(filterCategory, filterString);
+    return filterArray(list, string, category);    
   };
 
   return (
     <div className="bg-base-200 rounded-box p-6 font-display">
       <div className="flex justify-center">
         <div className="grid grid-cols-4 sm:grid-cols-2 xl:grid-cols-5 2xl:grid-cols-6 gap-4">
-          {filtered().map((film) => (
+          {filtered(filterString, filterCategory).map((film) => (
             <div className="mb-2" key={film.id}>
               <Link href={"/tk2/" + film.id}>
                 <a
-                  className="flex items-start relative w-full mb-2"
-                  style={{
-                    minWidth: 8.99 + "rem",
-                    maxWidth: 8.99 + "rem",
-                    height: 13.5 + "rem",
-                  }}
+                className="flex items-start relative w-full mb-2 min-w-[8.99rem] max-w-[8.99rem] h-[13.5rem]"
                 >
                   <img
                     className="rounded shadow-md w-full max-h-full h-full"
