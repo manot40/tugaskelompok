@@ -16,7 +16,7 @@ const FilmDisplay = ({}) => {
       <div className="media">
         <div className="header-wrapper relative z-0 mb-12">
           <div
-            className="header-hero bg-cover bg-center bg-no-repeat sm:h-52 md:h-52 h-64"
+            className="header-hero bg-cover bg-center bg-no-repeat sm:h-52 h-64"
             style={{ backgroundImage: "url('" + film.coverImage + "')" }}
           >
             <div className="backdrop-filter backdrop-blur-md w-full h-full">
@@ -27,7 +27,7 @@ const FilmDisplay = ({}) => {
             </div>
           </div>
           <div className="header-content relative">
-            <div className="container mx-auto sm:block md:block grid grid-flow-col auto-cols-max px-4">
+            <div className="container mx-auto sm:block grid grid-flow-col auto-cols-max px-4">
               <div className="-mt-32 relative mr-8">
                 <div className="static min-w-[12.99rem] max-w-[12.99rem] sm:min-w-[7.99rem] sm:max-w-[7.99rem]">
                   <img
@@ -37,19 +37,19 @@ const FilmDisplay = ({}) => {
                 </div>
               </div>
               <div className="mt-4 inline-grid">
-                <h1 className="text-4xl text-white sm:text-current md:text-current font-bold mb-4 sm:-mt-0 md:-mt-0 -mt-28 max-w-md">
+                <h1 className="text-4xl text-white sm:text-current font-bold mb-4 sm:-mt-0 -mt-28 max-w-md">
                   {film.name}
                 </h1>
                 <h6 className="text-xl font-bold">Synopsys</h6>
                 <hr className="mt-2 mb-4" />
-                <p className="text-sm max-w-5xl">{film.synopsis}</p>
+                <p className="text-sm md:max-w-[32rem] max-w-5xl">{film.synopsis}</p>
               </div>
             </div>
           </div>
         </div>
         <div className="container mx-auto px-4 grid grid-flow-col auto-cols-max">
-          <div className="sm:w-0 md:w-0 w-60"></div>
-          <div className="content xs:w-[22rem] sm:w-[28rem] md:w-[46rem] w-[64rem]">
+          <div className="sm:w-0 w-60"></div>
+          <div className="content xs:w-[22rem] sm:w-[28rem] md:w-[32rem] w-[64rem]">
             <h1 className="text-xl font-bold">Video Trailer</h1>
             <hr className="mt-2 mb-4" />
             <div className="relative h-0 pb-[56.25%]">
