@@ -7,7 +7,7 @@ const AddFilmModal = ({ newFilm }) => {
   const defaultData = {
     name: "",
     synopsis: "",
-    category: "",
+    category: "mystery",
     coverImage: "",
     videoLink: "https://www.youtube.com/embed/dQw4w9WgXcQ",
   }
