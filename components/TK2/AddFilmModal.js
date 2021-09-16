@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { capFirstLetter } from "../helpers";
-import { ToastContainer, toast } from 'react-toastify'
-import Select from 'react-select';
+import { ToastContainer, toast } from "react-toastify";
+import Select from "react-select";
 import categorySample from "../../exampleData/CategoryExample";
 
 const AddFilmModal = ({ newFilm }) => {
@@ -10,21 +10,21 @@ const AddFilmModal = ({ newFilm }) => {
     synopsis: "",
     category: [""],
     coverImage: "",
-    videoLink: "https://www.youtube.com/embed/dQw4w9WgXcQ",
-  }
+    videoLink: "",
+  };
   const [data, setData] = useState(defaultData);
   const [isModalOpen, setModal] = useState(false);
 
   const categories = () => {
-    const data = []
-    categorySample.forEach(el => {
-      data.push({ value: el, label: capFirstLetter(el) })
+    const data = [];
+    categorySample.forEach((el) => {
+      data.push({ value: el, label: capFirstLetter(el) });
     });
     return data;
-  }
+  };
   function setCategories(val) {
-    const selected = val.map(el => el.value)
-    setData({...data, category: [...selected]})
+    const selected = val.map((el) => el.value);
+    setData({ ...data, category: [...selected] });
   }
 
   function submitData(event) {
@@ -32,9 +32,9 @@ const AddFilmModal = ({ newFilm }) => {
       event.preventDefault();
       newFilm(data);
       setData(defaultData);
-      setModal(!isModalOpen)
+      setModal(!isModalOpen);
       toast.success("Submit Berhasil!");
-    } catch(err) {
+    } catch (err) {
       toast.error("Submit gagal, error: " + err.message);
     }
   }
@@ -49,7 +49,12 @@ const AddFilmModal = ({ newFilm }) => {
           Tambah Baru
         </label>
       </div>
-      <input type="checkbox" checked={isModalOpen} className="modal-toggle" readOnly/>
+      <input
+        type="checkbox"
+        checked={isModalOpen}
+        className="modal-toggle"
+        readOnly
+      />
       <div className="modal">
         <form className="modal-box" onSubmit={(e) => submitData(e)}>
           <h1 className="mb-4 text-left font-bold text-2xl antialiased tracking-wider font-display">
@@ -60,12 +65,13 @@ const AddFilmModal = ({ newFilm }) => {
               placeholder="Masukkan Nama Film"
               value={data.name}
               onChange={(e) => setData({ ...data, name: e.target.value })}
-              className="input input-bordered flex-auto mr-2"
+              className="input input-bordered flex-auto mb-2"
               required
             />
             <Select
               isMulti
-              onChange={val => setCategories(val)}
+              placeholder="Pilih genre..."
+              onChange={(val) => setCategories(val)}
               name="colors"
               inputId="genre-select"
               options={categories()}
@@ -95,16 +101,17 @@ const AddFilmModal = ({ newFilm }) => {
             />
           </div>
           <div className="modal-action">
-            <label onClick={() => setModal(!isModalOpen)} className="btn modal-button">
+            <label
+              onClick={() => setModal(!isModalOpen)}
+              className="btn modal-button"
+            >
               Close
             </label>
-            <button className="btn btn-primary">
-              Submit
-            </button>
+            <button className="btn btn-primary">Submit</button>
           </div>
         </form>
       </div>
-      <ToastContainer theme="colored"/>
+      <ToastContainer theme="colored" />
     </>
   );
 };

@@ -5,6 +5,7 @@ const categories = [
   "fantasy",
   "adventure",
   "comedy",
+  "horror",
 ];
 
 export default categories;
