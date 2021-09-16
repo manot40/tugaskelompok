@@ -37,7 +37,7 @@ const FilmDisplay = ({}) => {
                 </div>
               </div>
               <div className="mt-4 inline-grid">
-                <h1 className="text-4xl text-white font-bold mb-4 sm:-mt-0 md:-mt-0 -mt-28 max-w-md">
+                <h1 className="text-4xl text-white sm:text-current md:text-current font-bold mb-4 sm:-mt-0 md:-mt-0 -mt-28 max-w-md">
                   {film.name}
                 </h1>
                 <h6 className="text-xl font-bold">Synopsys</h6>
@@ -49,7 +49,7 @@ const FilmDisplay = ({}) => {
         </div>
         <div className="container mx-auto px-4 grid grid-flow-col auto-cols-max">
           <div className="sm:w-0 md:w-0 w-60"></div>
-          <div className="content sm:w-[24rem] md:w-[46rem] w-[64rem]">
+          <div className="content xs:w-[22rem] sm:w-[28rem] md:w-[46rem] w-[64rem]">
             <h1 className="text-xl font-bold">Video Trailer</h1>
             <hr className="mt-2 mb-4" />
             <div className="relative h-0 pb-[56.25%]">
@@ -59,9 +59,9 @@ const FilmDisplay = ({}) => {
                 height="315"
                 src={film.videoLink}
                 title="YouTube video player"
-                frameborder="0"
+                frameBorder="0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowfullscreen
+                allowFullScreen
               />
             </div>
           </div>
