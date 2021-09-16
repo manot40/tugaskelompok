@@ -9,7 +9,7 @@ import { toast } from "react-toastify";
 const reducer = (state, action) => {
   const { type, payload } = action;
   switch (type) {
-    case "MOD":
+    case "MUTATE":
       return {
         ...payload,
       };
@@ -24,10 +24,11 @@ const ListItem = ({ filterString, filterCategory, sortBy }) => {
   const [listFilm, dispatch] = useReducer(reducer, {});
 
   useEffect(() => {
-    if (!localStorage.getItem("listFilm"))
+    const getLocalItems = localStorage.getItem("listFilm");
+    if (!getLocalItems)
       localStorage.setItem("listFilm", JSON.stringify(sampleFilm));
-    const payload = JSON.parse(localStorage.getItem("listFilm"));
-    dispatch({ type: "MOD", payload: payload });
+    const payload = JSON.parse(getLocalItems);
+    dispatch({ type: "MUTATE", payload: payload });
   }, [sampleFilm]);
 
   function setLocalStorage(data) {
@@ -41,7 +42,7 @@ const ListItem = ({ filterString, filterCategory, sortBy }) => {
       [uuid()]: data,
     };
     const payload = {...listFilm, ...parse}
-    dispatch({ type: "MOD", payload: payload });
+    dispatch({ type: "MUTATE", payload: payload });
     setLocalStorage(payload);
   }
 
@@ -50,7 +51,7 @@ const ListItem = ({ filterString, filterCategory, sortBy }) => {
     const id = (e.target.localName === "ion-icon" ? e.target.parentElement.id : e.target.id).toString();
     if(!sampleFilm[id]) {
       delete payload[id];
-      dispatch({ type: "MOD", payload: payload });
+      dispatch({ type: "MUTATE", payload: payload });
       setLocalStorage(payload);
       toast.success('Hapus film berhasil!')
     } else {

@@ -14,10 +14,12 @@ export function sortArray(arr, prop, sort) {
 
 export function filterArray(arr, filterStr = '', category = '') {
   const regexp = new RegExp(filterStr, "i");
-  const fitleredCategory = arr.filter(el => {
-    return el.category.match(category)
+  const fitleredCategory = arr.filter(film => {
+    for(let el of film.category) {
+      if(el.match(category)) return true;
+    }
   })
   return fitleredCategory.filter(el => {
-    return el.name.match(regexp)
+    return (el.name.match(regexp) ? true : false)
   });
 }
