@@ -42,7 +42,7 @@ const FilmDisplay = ({}) => {
                 </h1>
                 <h6 className="text-xl font-bold">Synopsys</h6>
                 <hr className="mt-2 mb-4" />
-                <p className="text-sm md:max-w-[32rem] max-w-5xl">
+                <p className="text-sm md:max-w-[32rem] lg:max-w-[46rem] max-w-5xl">
                   {film.synopsis}
                 </p>
               </div>
@@ -51,7 +51,7 @@ const FilmDisplay = ({}) => {
         </div>
         <div className="container mx-auto px-4 grid grid-flow-col auto-cols-max">
           <div className="sm:w-0 w-60"></div>
-          <div className="content sm:w-[90vw] md:w-[32rem] w-[64rem]">
+          <div className="content sm:w-[90vw] md:w-[32rem] lg:max-w-[46rem] w-[64rem]">
             <h1 className="text-xl font-bold">Video Trailer</h1>
             <hr className="mt-2 mb-4" />
             <div className="relative h-0 pb-[56.25%]">
