@@ -1,6 +1,7 @@
 import { themeChange } from "theme-change";
 import { useEffect } from "react";
 import Head from "next/head";
+import Foot from "../components/Footer"
 import "../assets/style.css";
 import "react-toastify/dist/ReactToastify.css"
 
@@ -22,7 +23,10 @@ function App({ Component, pageProps }) {
           src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"
         />
       </Head>
-      <Component {...pageProps} />
+      <div className="flex flex-col justify-between">
+        <Component {...pageProps} />
+        <Foot />
+      </div>
     </>
   );
 }

@@ -9,6 +9,10 @@
   display: none;
 }
 
+.page-wrap {
+  min-height: calc(100vh - 4.7rem);
+}
+
 @layer components {
   .select-container {
     @apply text-black text-sm bg-base-100;

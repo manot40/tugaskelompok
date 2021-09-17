@@ -1,4 +1,5 @@
 import { useRouter } from "next/router";
+import ErrorPage from "next/error";
 import { useEffect, useState } from "react";
 
 const FilmDisplay = ({}) => {
@@ -11,8 +12,9 @@ const FilmDisplay = ({}) => {
     setFilm({ ...localItems[id] });
   }, [id]);
 
+  if(Object.keys(film).length === 0) return <ErrorPage statusCode={404}/>;
   return (
-    <div className="min-h-screen font-display">
+    <div className="page-wrap min-h-screen font-display">
       <div className="media">
         <div className="header-wrapper relative z-0 mb-12">
           <div
@@ -36,13 +38,13 @@ const FilmDisplay = ({}) => {
                   ></img>
                 </div>
               </div>
-              <div className="mt-4 inline-grid">
+              <div className="mt-4 inline-grid md:max-w-md lg:max-w-2xl max-w-5xl">
                 <h1 className="text-4xl text-white sm:text-current font-bold mb-4 sm:-mt-0 -mt-28 max-w-md">
                   {film.name}
                 </h1>
                 <h6 className="text-xl font-bold">Synopsys</h6>
                 <hr className="mt-2 mb-4" />
-                <p className="text-sm md:max-w-[32rem] lg:max-w-[46rem] max-w-5xl">
+                <p className="text-sm max-w-full">
                   {film.synopsis}
                 </p>
               </div>
@@ -51,7 +53,7 @@ const FilmDisplay = ({}) => {
         </div>
         <div className="container mx-auto px-4 grid grid-flow-col auto-cols-max">
           <div className="sm:w-0 w-60"></div>
-          <div className="content sm:w-[90vw] md:w-[32rem] lg:max-w-[46rem] w-[64rem]">
+          <div className="content sm:max-w-[90vw] md:max-w-[32rem] lg:max-w-[46rem] w-[64rem]">
             <h1 className="text-xl font-bold">Video Trailer</h1>
             <hr className="mt-2 mb-4" />
             <div className="relative h-0 pb-[56.25%]">
@@ -68,9 +70,6 @@ const FilmDisplay = ({}) => {
             </div>
           </div>
         </div>
-        <footer className="p-4 bg-base-300 mt-16">
-          <p className="text-center">Ini footer</p>
-        </footer>
       </div>
     </div>
   );
