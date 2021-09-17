@@ -12,6 +12,9 @@
 .page-wrap {
   min-height: calc(100vh - 8.8rem);
 }
+.menu li {
+  min-width: max-content;
+}
 
 @layer components {
   .select-container {
