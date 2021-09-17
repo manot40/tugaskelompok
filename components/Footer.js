@@ -10,12 +10,13 @@ const Footer = ({ }) => {
             <span className="label-text">Tema</span>
           </label>
           <select
-            className="select select-bordered select-sm w-48"
+            className="select select-bordered select-sm w-32"
             data-choose-theme
           >
             <option value="">Ikuti Sistem</option>
             <option value="light">Terang</option>
             <option value="dark">Gelap</option>
+            <option value="cyberpunk">CyberPunk</option>
           </select>
         </div>
       </div>
