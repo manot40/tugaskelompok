@@ -10,7 +10,7 @@
 }
 
 .page-wrap {
-  min-height: calc(100vh - 4.7rem);
+  min-height: calc(100vh - 8.8rem);
 }
 
 @layer components {

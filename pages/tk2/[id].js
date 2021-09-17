@@ -18,7 +18,7 @@ const FilmDisplay = ({}) => {
       <div className="media">
         <div className="header-wrapper relative z-0 mb-12">
           <div
-            className="header-hero bg-cover bg-center bg-no-repeat sm:h-52 h-64"
+            className="header-hero bg-cover bg-center bg-no-repeat sm:h-44 h-64"
             style={{ backgroundImage: "url('" + film.coverImage + "')" }}
           >
             <div className="backdrop-filter backdrop-blur-md w-full h-full">

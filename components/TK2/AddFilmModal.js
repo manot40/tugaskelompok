@@ -8,7 +8,7 @@ const AddFilmModal = ({ newFilm }) => {
   const defaultData = {
     name: "",
     synopsis: "",
-    category: [""],
+    category: [],
     coverImage: "",
     videoLink: "",
   };
@@ -30,12 +30,13 @@ const AddFilmModal = ({ newFilm }) => {
   function submitData(event) {
     try {
       event.preventDefault();
+      if(!data.category.length) throw "Harap masukkan genre!";
       newFilm(data);
       setData(defaultData);
       setModal(!isModalOpen);
       toast.success("Submit Berhasil!");
     } catch (err) {
-      toast.error("Submit gagal, error: " + err.message);
+      toast.error("Submit gagal. " + err);
     }
   }
 
