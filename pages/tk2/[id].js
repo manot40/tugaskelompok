@@ -38,7 +38,7 @@ const FilmDisplay = ({ }) => {
                   />
                 </div>
                 <div className="sm:self-end sm:ml-4 flex flex-row gap-2 mt-4">
-                  <label className="btn btn-primary w-[72%] sm:w-full">ADD TO LIST</label>
+                  <label className="btn btn-primary w-[72%] sm:w-[95%]">ADD TO LIST</label>
                   <label className="btn btn-error max-w-min"><ion-icon name="heart" /></label>
                 </div>
               </div>
@@ -46,8 +46,8 @@ const FilmDisplay = ({ }) => {
                 <h1 className="text-4xl text-white sm:text-current font-bold mb-4 sm:-mt-0 -mt-28 max-w-md">
                   {film.name}
                 </h1>
-                <h6 className="text-xl font-bold -mt-12 sm:-mt-0 sm:mb-4">Synopsys</h6>
-                <p className="text-sm max-w-full -mt-20 sm:-mt-0">
+                <h6 className="text-2xl font-bold sm:mb-4">Synopsys</h6>
+                <p className="text-sm max-w-full">
                   {film.synopsis}
                 </p>
               </div>
