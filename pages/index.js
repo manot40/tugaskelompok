@@ -3,7 +3,7 @@ import TheTeam from "../components/TheTeam";
 
 export default function Home() {
   return (
-    <div className="page-wrap mx-auto h-screen flex justify-center items-center -m-0">
+    <div className="mx-auto h-screen flex justify-center items-center -m-0">
       <div className="container">
         <div className="flex flex-col w-full justify-center">
           <h1 className="text-4xl text-center font-bold mb-8 font-display">

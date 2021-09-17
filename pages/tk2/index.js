@@ -14,7 +14,7 @@ const GaleriFilmTK2 = () => {
   }
 
   return (
-    <div className="page-wrap container mx-auto flex justify-center items-center font-sans">
+    <div className="page-wrap container mx-auto flex justify-center items-center font-sans mt-8">
       <div className="block mx-auto 2/3 sm:w-11/12  md:w-10/12">
         <h1 className="mb-4 text-left font-bold text-3xl antialiased tracking-wider font-display">
           GALERI FILM

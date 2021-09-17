@@ -23,10 +23,8 @@ function App({ Component, pageProps }) {
           src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"
         />
       </Head>
-      <div className="flex flex-col justify-between">
-        <Component {...pageProps} />
-        <Foot />
-      </div>
+      <Component {...pageProps} />
+      <Foot />
     </>
   );
 }

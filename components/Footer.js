@@ -1,6 +1,6 @@
 const Footer = ({ }) => {
   return (
-    <footer className="relative bottom-0 right-0 w-full p-3 bg-base-300 mt-4">
+    <footer className="relative bottom-0 right-0 w-full p-3 bg-base-300 mt-12">
       <div className="flex justify-between">
         <div className="flex">
           <label className="cursor-pointer label text-sm">Team 1 MCCA</label>
