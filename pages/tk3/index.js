@@ -4,11 +4,11 @@ import { useEffect } from "react";
 import Dexie from "dexie";
 
 const db = new Dexie("tk3");
-try {
+if (!db.productDb) {
   db.version(1).stores({
     productDb: "++id,name,productImage,description,buyPrice,sellPrice",
   });
-} catch {}
+}
 
 const CRUDFormTK3 = () => {
   useEffect(() => {
@@ -34,7 +34,7 @@ const CRUDFormTK3 = () => {
           </button>
         </div>
         <div className="max-w-[90vw]">
-          <ProductTable dbConnect={db} />
+          <ProductTable db={db} />
         </div>
       </div>
     </div>

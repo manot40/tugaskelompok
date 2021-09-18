@@ -2,14 +2,14 @@ import { useState, useEffect } from "react";
 import sampleData from "../../exampleData/ProductExample";
 import ProductModal from "./ProductModal";
 
-const ProductTable = ({ dbConnect }) => {
+const ProductTable = ({ db }) => {
   const [dataList, setDataList] = useState([]);
   const [dataChange, dataChanged] = useState(0);
   const [editProductModal, setEditProductModal] = useState(false);
 
   useEffect(() => {
     (async () => {
-      await dbConnect.productDb
+      await db.productDb
         .toArray()
         .then((data) => setDataList(data))
         .catch((err) => console.log(err));
@@ -17,12 +17,12 @@ const ProductTable = ({ dbConnect }) => {
   }, [dataChange]);
 
   function loadDefaultData() {
-    dbConnect.productDb.bulkPut(sampleData);
+    db.productDb.bulkPut(sampleData);
     dataChanged(dataChange + 1);
   }
 
   function addData(data) {
-    dbConnect.productDb.put(data);
+    db.productDb.put(data);
     dataChanged(dataChange + 1);
   }
 
@@ -33,7 +33,7 @@ const ProductTable = ({ dbConnect }) => {
         : e.target.id
     );
     (async () => {
-      await dbConnect.productDb
+      await db.productDb
         .where("id")
         .equals(id)
         .toArray()
@@ -51,7 +51,7 @@ const ProductTable = ({ dbConnect }) => {
     })();
   }
   async function editData(data) {
-    await dbConnect.productDb
+    await db.productDb
       .where("id")
       .equals(data.id)
       .modify({ ...data })
@@ -65,7 +65,7 @@ const ProductTable = ({ dbConnect }) => {
         ? e.target.parentElement.id
         : e.target.id
     );
-    await dbConnect.productDb
+    await db.productDb
       .where("id")
       .equals(id)
       .delete()

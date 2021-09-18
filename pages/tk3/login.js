@@ -10,7 +10,10 @@ const defaultCredential = {
 
 const TK3CRUDFormLogin = () => {
   const { query } = useRouter();
-  const [formData, setFormData] = useState({});
+  const [formData, setFormData] = useState({
+    username: "",
+    password: "",
+  });
 
   useEffect(() => {
     if (query.redirected) toast.info("Harap login terlebih dahulu");
@@ -36,8 +39,8 @@ const TK3CRUDFormLogin = () => {
 
   return (
     <div className="container mx-auto h-screen flex flex-col justify-center items-center m-[-3.38rem] max-w-sm">
-      <div class="alert alert-info w-full mb-10">
-        <div class="flex-1 gap-2">
+      <div className="alert alert-info w-full mb-10">
+        <div className="flex-1 gap-2">
           <ion-icon
             style={{ fontSize: 24 + "px" }}
             name="information-circle-outline"
