@@ -19,8 +19,8 @@ const FormTK1 = () => {
   const [isSubmit, setIsSubmit] = useState(false);
   const [data, setData] = useState(defaultForm);
 
-  function handleFotoProfil(event) {
-    let file = event.target.files[0];
+  function handleFotoProfil(e) {
+    let file = e.target.files[0];
     let reader = new FileReader();
     reader.onloadend = () => {
       setData({
@@ -221,7 +221,7 @@ const FormTK1 = () => {
             </label>
           </div>
         </form>
-        <ToastContainer theme="colored" />
+        <ToastContainer className="text-sm" theme="colored" />
         {isSubmit ? <TK1FormTable dataTabel={data} /> : null}
       </div>
     </div>
