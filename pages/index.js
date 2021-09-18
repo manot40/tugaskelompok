@@ -28,13 +28,11 @@ export default function Home() {
                 Project Library Film TK2
               </button>
             </Link>
-            <div data-tip="Work in progress!" className="tooltip block mb-4">
-              <Link href="/tk3">
-                <button className="w-full btn">
-                  Project Form CRUD TK3
-                </button>
-              </Link>
-            </div>
+            <Link href="/tk3">
+              <button className="w-full block btn btn-primary mb-4">
+                Project Form CRUD TK3
+              </button>
+            </Link>
             <div data-tip="Work in progress!" className="tooltip block mb-4">
               <button className="w-full btn" disabled>
                 Project Form TK4

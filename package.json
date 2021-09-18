@@ -6,6 +6,7 @@
     "start": "next start"
   },
   "dependencies": {
+    "bcryptjs": "^2.4.3",
     "daisyui": "^1.14.0",
     "dayjs": "^1.10.6",
     "dexie": "^3.0.3",
