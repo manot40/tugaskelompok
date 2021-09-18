@@ -58,8 +58,8 @@ const FormTK1 = () => {
   }
 
   return (
-    <div className="page-wrap container flex justify-center mt-8 font-sans">
-      <div className="block mx-auto w-11/12  md:w-10/12 lg:w-2/3 xl:w-2/3 2xl:w-2/3">
+    <div className="page-wrap mx-auto container flex justify-center mt-8 font-sans">
+      <div className="block mx-auto sm:w-11/12 md:w-2/3 w-1/2">
         <h1 className="mb-2 text-left font-bold text-3xl antialiased tracking-wider font-display">
           INPUT DATA DIRI
         </h1>
