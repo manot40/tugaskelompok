@@ -1,34 +1,26 @@
 import { useState, useEffect } from "react";
-import Dexie from "dexie";
 import sampleData from "../../exampleData/ProductExample";
 import ProductModal from "./ProductModal";
 
-const db = new Dexie("tk3");
-
-const ProductTable = () => {
+const ProductTable = ({ dbConnect }) => {
   const [dataList, setDataList] = useState([]);
   const [dataChange, dataChanged] = useState(0);
   const [editProductModal, setEditProductModal] = useState(false);
 
   useEffect(() => {
-    db.version(1).stores({
-      productDb: "++id,name,productImage,description,buyPrice,sellPrice",
-    });
-  }, [sampleData]);
-  useEffect(() => {
     (async () => {
-      const data = await db.productDb.toArray();
+      const data = await dbConnect.productDb.toArray();
       setDataList(data);
     })();
   }, [dataChange]);
 
   function loadDefaultData() {
-    db.productDb.bulkPut(sampleData);
+    dbConnect.productDb.bulkPut(sampleData);
     dataChanged(dataChange + 1);
   }
 
   function addData(data) {
-    db.productDb.put(data);
+    dbConnect.productDb.put(data);
     dataChanged(dataChange + 1);
   }
 
@@ -39,7 +31,7 @@ const ProductTable = () => {
         : e.target.id
     );
     (async () => {
-      await db.productDb.where("id").equals(id).toArray()
+      await dbConnect.productDb.where("id").equals(id).toArray()
         .then(data => {
           setEditProductModal(
             <ProductModal
@@ -53,7 +45,7 @@ const ProductTable = () => {
     })();
   }
   async function editData(data) {
-    await db.productDb.where("id").equals(data.id).modify({...data})
+    await dbConnect.productDb.where("id").equals(data.id).modify({...data})
       .then(() => {
         dataChanged(dataChange + 1)
       })
@@ -69,7 +61,7 @@ const ProductTable = () => {
         ? e.target.parentElement.id
         : e.target.id
     );
-    await db.productDb.where("id").equals(id).delete();
+    await dbConnect.productDb.where("id").equals(id).delete();
     dataChanged(dataChange + 1);
   }
 
