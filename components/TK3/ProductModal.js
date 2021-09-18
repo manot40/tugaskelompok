@@ -11,7 +11,7 @@ const ProductModal = ({ submitProduct, isModify, toBeModified, unMount }) => {
   };
   const [data, setData] = useState(!isModify ? defaultData : toBeModified);
   const [upload, setUpload] = useState(!isModify ? "" : "Unchanged");
-  const [isModalOpen, setModal] = useState((!isModify ? false : true));
+  const [isModalOpen, setModal] = useState(!isModify ? false : true);
 
   function handleUploadFoto(e) {
     let file = e.target.files[0];
@@ -31,7 +31,7 @@ const ProductModal = ({ submitProduct, isModify, toBeModified, unMount }) => {
     try {
       event.preventDefault();
       submitProduct(data);
-      if(isModify) unMount();
+      if (isModify) unMount();
       setData({ ...defaultData });
       setUpload("");
       setModal(!isModalOpen);
@@ -43,10 +43,10 @@ const ProductModal = ({ submitProduct, isModify, toBeModified, unMount }) => {
   }
 
   function closeModal() {
-    if(isModify) {
+    if (isModify) {
       unMount();
     } else {
-      setModal(!isModalOpen)
+      setModal(!isModalOpen);
     }
   }
 
@@ -135,10 +135,7 @@ const ProductModal = ({ submitProduct, isModify, toBeModified, unMount }) => {
             />
           </div>
           <div className="modal-action">
-            <label
-              onClick={() => closeModal()}
-              className="btn modal-button"
-            >
+            <label onClick={() => closeModal()} className="btn modal-button">
               Close
             </label>
             <button className="btn btn-primary">Submit</button>

@@ -13,13 +13,12 @@ try {
 const CRUDFormTK3 = () => {
   useEffect(() => {
     const isLoggedIn = localStorage.getItem("isLoggedIn");
-    console.log(isLoggedIn);
     if (!isLoggedIn) Router.push("/tk3/login?redirected=true");
     if (isLoggedIn === "false") Router.push("/tk3/login?redirected=true");
   }, []);
 
   function logout() {
-    localStorage.setItem("isLoggedIn", "false")
+    localStorage.setItem("isLoggedIn", "false");
     Router.push("/tk3/login");
   }
 

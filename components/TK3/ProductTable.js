@@ -9,8 +9,10 @@ const ProductTable = ({ dbConnect }) => {
 
   useEffect(() => {
     (async () => {
-      const data = await dbConnect.productDb.toArray();
-      setDataList(data);
+      await dbConnect.productDb
+        .toArray()
+        .then((data) => setDataList(data))
+        .catch((err) => console.log(err));
     })();
   }, [dataChange]);
 
@@ -31,8 +33,11 @@ const ProductTable = ({ dbConnect }) => {
         : e.target.id
     );
     (async () => {
-      await dbConnect.productDb.where("id").equals(id).toArray()
-        .then(data => {
+      await dbConnect.productDb
+        .where("id")
+        .equals(id)
+        .toArray()
+        .then((data) => {
           setEditProductModal(
             <ProductModal
               submitProduct={editData}
@@ -41,18 +46,17 @@ const ProductTable = ({ dbConnect }) => {
               unMount={unmountModal}
             />
           );
-        });
+        })
+        .catch((err) => console.log(err));
     })();
   }
   async function editData(data) {
-    await dbConnect.productDb.where("id").equals(data.id).modify({...data})
-      .then(() => {
-        dataChanged(dataChange + 1)
-      })
-      .catch(e => console.log(e));
-  }
-  function unmountModal() {
-    setEditProductModal(false);
+    await dbConnect.productDb
+      .where("id")
+      .equals(data.id)
+      .modify({ ...data })
+      .then(dataChanged(dataChange + 1))
+      .catch((e) => console.log(e));
   }
 
   async function deleteData(e) {
@@ -61,8 +65,15 @@ const ProductTable = ({ dbConnect }) => {
         ? e.target.parentElement.id
         : e.target.id
     );
-    await dbConnect.productDb.where("id").equals(id).delete();
-    dataChanged(dataChange + 1);
+    await dbConnect.productDb
+      .where("id")
+      .equals(id)
+      .delete()
+      .then(dataChanged(dataChange + 1));
+  }
+
+  function unmountModal() {
+    setEditProductModal(false);
   }
 
   function serveData() {
@@ -120,12 +131,14 @@ const ProductTable = ({ dbConnect }) => {
         </thead>
         <tbody>{serveData()}</tbody>
       </table>
-      {dataList.length ? null :
+      {dataList.length ? null : (
         <div className="flex flex-col items-center mt-4">
           <p>Tidak ada data</p>
-          <a className="link" onClick={() => loadDefaultData()}>Muat sampel data?</a>
+          <a className="link" onClick={() => loadDefaultData()}>
+            Muat sampel data?
+          </a>
         </div>
-      }
+      )}
     </div>
   );
 };

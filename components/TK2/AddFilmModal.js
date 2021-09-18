@@ -30,7 +30,7 @@ const AddFilmModal = ({ newFilm }) => {
   function submitData(event) {
     try {
       event.preventDefault();
-      if(!data.category.length) throw "Harap masukkan genre!";
+      if (!data.category.length) throw "Harap masukkan genre!";
       newFilm(data);
       setData(defaultData);
       setModal(!isModalOpen);

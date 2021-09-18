@@ -1,4 +1,4 @@
-const Footer = ({ }) => {
+const Footer = ({}) => {
   return (
     <footer className="relative bottom-0 right-0 w-full p-3 bg-base-300 mt-12">
       <div className="flex justify-between">
@@ -21,7 +21,7 @@ const Footer = ({ }) => {
         </div>
       </div>
     </footer>
-  )
-}
+  );
+};
 
 export default Footer;

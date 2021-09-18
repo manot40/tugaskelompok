@@ -1,10 +1,13 @@
 const TheTeam = () => {
   function scrollCard(e) {
     e.preventDefault();
-    const delta = Math.max(-1, Math.min(1, (e.nativeEvent.wheelDelta || -e.nativeEvent.detail)))
-    e.currentTarget.scrollLeft -= (delta * 50)
+    const delta = Math.max(
+      -1,
+      Math.min(1, e.nativeEvent.wheelDelta || -e.nativeEvent.detail)
+    );
+    e.currentTarget.scrollLeft -= delta * 50;
   }
-  
+
   return (
     <div
       className="overflow-x-auto flex flex-nowrap"

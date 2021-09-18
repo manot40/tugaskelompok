@@ -38,7 +38,10 @@ const TK3CRUDFormLogin = () => {
     <div className="container mx-auto h-screen flex flex-col justify-center items-center m-[-3.38rem] max-w-sm">
       <div class="alert alert-info w-full mb-10">
         <div class="flex-1 gap-2">
-          <ion-icon style={{fontSize: 24 + 'px'}} name="information-circle-outline" />
+          <ion-icon
+            style={{ fontSize: 24 + "px" }}
+            name="information-circle-outline"
+          />
           <label>Default Username "user" and Password "user123"</label>
         </div>
       </div>

@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { toast, ToastContainer } from "react-toastify";
 import TK1FormTable from "../components/TK1FormTable";
 
 const FormTK1 = () => {
@@ -36,15 +37,12 @@ const FormTK1 = () => {
   function handleSubmit(e) {
     e.preventDefault();
     const inputState = () => {
-      if (
-        !data.avatar.fileName ||
-        !data.sertifikat ||
-        !data.resume
-      ) return false;
+      if (!data.avatar.fileName || !data.sertifikat || !data.resume)
+        return false;
       return true;
     };
     if (!inputState()) {
-      alert("File pendukung harus di upload!");
+      toast.error("File pendukung harus di upload!");
     } else {
       setIsSubmit(!isSubmit);
     }
@@ -75,7 +73,7 @@ const FormTK1 = () => {
               type="text"
               className="input input-bordered w-full"
               value={data.nama}
-              onChange={e => setData({ ...data, nama: e.target.value })}
+              onChange={(e) => setData({ ...data, nama: e.target.value })}
               required
             />
           </div>
@@ -86,7 +84,7 @@ const FormTK1 = () => {
             <textarea
               className="textarea textarea-bordered w-full h-24"
               value={data.alamat}
-              onChange={e => setData({ ...data, alamat: e.target.value })}
+              onChange={(e) => setData({ ...data, alamat: e.target.value })}
               required
             />
           </div>
@@ -98,7 +96,7 @@ const FormTK1 = () => {
               type="date"
               className="input input-bordered w-full"
               value={data.birthdate}
-              onChange={e => setData({ ...data, birthdate: e.target.value })}
+              onChange={(e) => setData({ ...data, birthdate: e.target.value })}
               required
             />
           </div>
@@ -113,7 +111,7 @@ const FormTK1 = () => {
                   className="radio mr-2"
                   value="Pria"
                   name="gender"
-                  onChange={e => setData({ ...data, gender: e.target.value })}
+                  onChange={(e) => setData({ ...data, gender: e.target.value })}
                   required
                 />
                 <span className="label-text">Pria</span>
@@ -125,7 +123,7 @@ const FormTK1 = () => {
                   className="radio mr-2"
                   value="Wanita"
                   name="gender"
-                  onChange={e => setData({ ...data, gender: e.target.value })}
+                  onChange={(e) => setData({ ...data, gender: e.target.value })}
                   required
                 />
                 <span className="label-text">Wanita</span>
@@ -143,7 +141,7 @@ const FormTK1 = () => {
                   accept=".jpeg,.jpg,.png"
                   id="avatar"
                   className="upload"
-                  onChange={e => handleFotoProfil(e)}
+                  onChange={(e) => handleFotoProfil(e)}
                   hidden
                 />
                 <input
@@ -218,12 +216,13 @@ const FormTK1 = () => {
           </div>
           <div className="flex">
             <button className="btn btn-primary w-36 mr-2">Submit</button>
-            <label className="btn btn w-18" onClick={e => resetForm()}>
+            <label className="btn btn w-18" onClick={(e) => resetForm()}>
               Reset
             </label>
           </div>
         </form>
-        { isSubmit ? <TK1FormTable dataTabel={data} /> : null }
+        <ToastContainer theme="colored" />
+        {isSubmit ? <TK1FormTable dataTabel={data} /> : null}
       </div>
     </div>
   );
