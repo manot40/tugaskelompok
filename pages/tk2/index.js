@@ -1,6 +1,7 @@
 import { useState } from "react";
 import FilterBar from "../../components/TK2/FilterBar";
 import ListItem from "../../components/TK2/ListItem";
+import categories from "../../exampleData/CategoryExample";
 
 const GaleriFilmTK2 = () => {
   const [filterString, setfilterString] = useState("");
@@ -23,6 +24,7 @@ const GaleriFilmTK2 = () => {
           onStringChange={handleStateChange}
           onCategoryChange={handleStateChange}
           onSortChange={handleStateChange}
+          categoryOptions={categories}
         />
         <div className="">
           <ListItem

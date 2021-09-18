@@ -2,7 +2,7 @@ import { useRouter } from "next/router";
 import ErrorPage from "next/error";
 import { useEffect, useState } from "react";
 
-const FilmDisplay = ({ }) => {
+const FilmDisplay = ({}) => {
   const router = useRouter();
   const { id } = router.query;
 
@@ -38,8 +38,12 @@ const FilmDisplay = ({ }) => {
                   />
                 </div>
                 <div className="sm:self-end sm:ml-4 flex flex-row gap-2 mt-4">
-                  <label className="btn btn-primary w-[72%] sm:w-[91.1%]">ADD TO LIST</label>
-                  <label className="btn btn-error max-w-min"><ion-icon name="heart" /></label>
+                  <span className="btn btn-primary w-[72%] sm:w-[91.1%]">
+                    ADD TO LIST
+                  </span>
+                  <label className="btn btn-error max-w-min">
+                    <ion-icon name="heart" />
+                  </label>
                 </div>
               </div>
               <div className="mt-4 inline-grid md:max-w-md lg:max-w-2xl max-w-5xl">
@@ -47,9 +51,7 @@ const FilmDisplay = ({ }) => {
                   {film.name}
                 </h1>
                 <h6 className="text-2xl font-bold mb-4 2xl:mb-0">Synopsys</h6>
-                <p className="text-sm max-w-full">
-                  {film.synopsis}
-                </p>
+                <p className="text-sm max-w-full">{film.synopsis}</p>
               </div>
             </div>
           </div>
@@ -58,19 +60,19 @@ const FilmDisplay = ({ }) => {
           <div className="sticky sm:top-2 sm:h-12 sm:w-full w-52 mb-8 mr-8">
             <ul className="menu py-2 shadow-md text-sm bg-base-200 rounded-box overflow-x-auto sm:py-0 sm:flex sm:flex-row sm:flex-nowrap">
               <li>
-                <a>Overview</a>
+                <a href="#">Overview</a>
               </li>
               <li>
-                <a>Watch</a>
+                <a href="#">Watch</a>
               </li>
               <li>
-                <a>Characters</a>
+                <a href="#">Characters</a>
               </li>
               <li>
-                <a>Stats</a>
+                <a href="#">Stats</a>
               </li>
               <li>
-                <a>Reviews</a>
+                <a href="#">Reviews</a>
               </li>
             </ul>
           </div>

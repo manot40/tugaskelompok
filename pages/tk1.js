@@ -31,6 +31,7 @@ const FormTK1 = () => {
       });
     };
     reader.readAsDataURL(file);
+    e.target.value = null;
   }
   function handleSubmit(e) {
     e.preventDefault();
