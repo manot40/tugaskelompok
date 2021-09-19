@@ -29,6 +29,9 @@ const ListItem = ({ filterString, filterCategory, sortBy }) => {
   const [listFilm, dispatch] = useReducer(reducer, {});
 
   useEffect(() => {
+    if (!localStorage.getItem("listFilm")) {
+      setLocalStorage({ ...sampleFilm });
+    }
     const getLocalItems = localStorage.getItem("listFilm");
     const payload = JSON.parse(getLocalItems);
     dispatch({ type: "MUTATE", payload });
