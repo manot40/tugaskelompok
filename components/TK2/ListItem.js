@@ -32,7 +32,7 @@ const ListItem = ({ filterString, filterCategory, sortBy }) => {
     const getLocalItems = localStorage.getItem("listFilm");
     const payload = JSON.parse(getLocalItems);
     dispatch({ type: "MUTATE", payload });
-  }, [sampleFilm]);
+  }, []);
 
   function setLocalStorage(data) {
     if (typeof window !== "undefined") {
@@ -108,7 +108,7 @@ const ListItem = ({ filterString, filterCategory, sortBy }) => {
       )}
       {Object.keys(listFilm).length === 0 && (
         <div className="flex justify-center">
-          <a onClick={(e) => loadDefault()} className="link text-sm mb-2">
+          <a onClick={() => loadDefault()} className="link text-sm mb-2">
             Load sample data?
           </a>
         </div>

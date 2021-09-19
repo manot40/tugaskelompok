@@ -95,7 +95,7 @@ const ProductModal = ({ submitProduct, isModify, toBeModified, unMount }) => {
               </label>
               <input
                 type="file"
-                accept=".jpeg,.jpg,.png"
+                accept="image/*"
                 id="foto"
                 className="upload"
                 onChange={(e) => handleUploadFoto(e)}

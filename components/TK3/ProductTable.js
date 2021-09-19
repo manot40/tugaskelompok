@@ -5,14 +5,14 @@ import ProductModal from "./ProductModal";
 const ProductTable = ({ db }) => {
   const [dataList, setDataList] = useState([]);
   const [dataChange, dataChanged] = useState(0);
-  const [editProductModal, setEditProductModal] = useState(false);
+  const [editModal, setEditModal] = useState(false);
 
   useEffect(() => {
     (async () => {
       await db.productDb
         .toArray()
         .then((data) => setDataList(data))
-        .catch((err) => console.log(err));
+        .catch((err) => console.error(err));
     })();
   }, [dataChange]);
 
@@ -21,62 +21,58 @@ const ProductTable = ({ db }) => {
     dataChanged(dataChange + 1);
   }
 
+  function getItemId(e) {
+    return parseInt(
+      e.target.localName === "ion-icon"
+        ? e.target.parentElement.id
+        : e.target.id
+    );
+  }
+
   function addData(data) {
     db.productDb.put(data);
     dataChanged(dataChange + 1);
   }
 
-  function openEditModal(e) {
-    const id = parseInt(
-      e.target.localName === "ion-icon"
-        ? e.target.parentElement.id
-        : e.target.id
-    );
-    (async () => {
-      await db.productDb
-        .where("id")
-        .equals(id)
-        .toArray()
-        .then((data) => {
-          setEditProductModal(
-            <ProductModal
-              submitProduct={editData}
-              isModify={true}
-              toBeModified={data[0]}
-              unMount={unmountModal}
-            />
-          );
-        })
-        .catch((err) => console.log(err));
-    })();
+  async function openEditModal(e) {
+    await db.productDb
+      .where("id")
+      .equals(getItemId(e))
+      .toArray()
+      .then((data) => {
+        setEditModal(
+          <ProductModal
+            submitProduct={editData}
+            isModify={true}
+            toBeModified={data[0]}
+            unMount={closeModal}
+          />
+        );
+      })
+      .catch((err) => console.error(err));
   }
   async function editData(data) {
     await db.productDb
       .where("id")
       .equals(data.id)
-      .modify({ ...data })
+      .modify(data)
       .then(dataChanged(dataChange + 1))
-      .catch((e) => console.log(e));
+      .catch((e) => console.error(e));
   }
 
   async function deleteData(e) {
-    const id = parseInt(
-      e.target.localName === "ion-icon"
-        ? e.target.parentElement.id
-        : e.target.id
-    );
     await db.productDb
       .where("id")
-      .equals(id)
+      .equals(getItemId(e))
       .delete()
       .then(dataChanged(dataChange + 1));
   }
 
-  function unmountModal() {
-    setEditProductModal(false);
+  function closeModal() {
+    setEditModal(false);
   }
 
-  function serveData() {
+  function loadData() {
     return dataList.map((data) => (
       <tr key={data.id}>
         <td />
@@ -115,7 +111,7 @@ const ProductTable = ({ db }) => {
 
   return (
     <div className="overflow-x-auto">
-      {editProductModal}
+      {editModal}
       <table className="table w-full">
         <thead>
           <tr>
@@ -129,7 +125,7 @@ const ProductTable = ({ db }) => {
             </th>
           </tr>
         </thead>
-        <tbody>{serveData()}</tbody>
+        <tbody>{loadData()}</tbody>
       </table>
       {dataList.length ? null : (
         <div className="flex flex-col items-center mt-4">

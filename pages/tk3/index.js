@@ -29,7 +29,7 @@ const CRUDFormTK3 = () => {
           <h1 className="mb-6 text-left font-bold text-3xl antialiased tracking-wider font-display">
             LIST PRODUK
           </h1>
-          <button className="btn btn-sm btn-error" onClick={(e) => logout()}>
+          <button className="btn btn-sm btn-error" onClick={() => logout()}>
             LOGOUT
           </button>
         </div>
