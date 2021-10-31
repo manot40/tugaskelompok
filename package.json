@@ -4,9 +4,10 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-	"lint": "next lint"
+    "lint": "next lint"
   },
   "dependencies": {
+    "@supabase/supabase-js": "^1.25.2",
     "bcryptjs": "^2.4.3",
     "daisyui": "^1.14.0",
     "dayjs": "^1.10.6",

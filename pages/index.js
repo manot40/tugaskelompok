@@ -33,11 +33,11 @@ export default function Home() {
                 Project Form CRUD TK3
               </button>
             </Link>
-            <div data-tip="Work in progress!" className="tooltip block mb-4">
-              <button className="w-full btn" disabled>
+            <Link href="/tk4">
+              <button className="w-full block btn btn-primary">
                 Project Form TK4
               </button>
-            </div>
+            </Link>
           </div>
         </div>
       </div>
