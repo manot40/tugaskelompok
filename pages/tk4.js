@@ -8,13 +8,11 @@ const FormTK1 = () => {
   const [_changed, changed] = useState(0);
 
   useEffect(() => {
-    (async () => {
-      await supabase
-        .from("tk4")
-        .select("*")
-        .order("created_at", { ascending: false })
-        .then(({ data }) => setTableData(data));
-    })();
+    supabase
+      .from("tk4")
+      .select("*")
+      .order("created_at", { ascending: false })
+      .then(({ data }) => setTableData(data));
   }, [_changed]);
 
   function created(data) {
