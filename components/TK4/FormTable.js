@@ -1,4 +1,12 @@
-const FormTable = ({ tableData }) => {
+const FormTable = ({ tableData, onModify }) => {
+  function handleAction(action, e) {
+    const index =
+      e.target.localName === "ion-icon"
+        ? e.target.parentElement.id
+        : e.target.id;
+    onModify(action, tableData[index]);
+  }
+
   return (
     <div className="w-2/3 sm:w-full md:w-full lg:w-1/2 mb-8">
       <h1 className="mb-2 text-left font-bold text-3xl antialiased tracking-wider font-display">
@@ -17,10 +25,11 @@ const FormTable = ({ tableData }) => {
               <th>Komentar</th>
               <th>Hobi</th>
               <th>Lokasi</th>
+              <th />
             </tr>
           </thead>
           <tbody>
-            {tableData.map((data) => (
+            {tableData.map((data, index) => (
               <tr key={data.id}>
                 <td>
                   <div className="flex items-center space-x-3">
@@ -59,6 +68,30 @@ const FormTable = ({ tableData }) => {
                   >
                     GMaps
                   </a>
+                </td>
+                <td>
+                  <div className="flex flex-col space-y-1">
+                    <span
+                      id={index}
+                      className="btn btn-sm btn-info"
+                      onClick={(e) => handleAction("EDIT", e)}
+                    >
+                      <ion-icon
+                        style={{ fontSize: 18 + "px" }}
+                        name="create-outline"
+                      />
+                    </span>
+                    <span
+                      id={index}
+                      className="btn btn-sm btn-error"
+                      onClick={(e) => handleAction("DELETE", e)}
+                    >
+                      <ion-icon
+                        style={{ fontSize: 18 + "px" }}
+                        name="trash-outline"
+                      />
+                    </span>
+                  </div>
                 </td>
               </tr>
             ))}

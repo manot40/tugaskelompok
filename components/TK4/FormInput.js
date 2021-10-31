@@ -19,7 +19,7 @@ const defaultHobby = [
   { value: 3, label: "Bermain Game" },
 ];
 
-const FormInput = ({ onUpdate }) => {
+const FormInput = ({ onCreated }) => {
   const [data, setData] = useState(defaultForm);
   const [isLoading, setIsLoading] = useState(false);
   useEffect(() => {
@@ -44,9 +44,8 @@ const FormInput = ({ onUpdate }) => {
       .from("tk4")
       .insert([data])
       .then(({ data }) => {
-        onUpdate(data[0]);
-        setIsLoading();
         toast.success("Submit Data Berhasil!");
+        onCreated(data[0]);
         setIsLoading(false);
       })
       .catch((err) => {
