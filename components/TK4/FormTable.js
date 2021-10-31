@@ -38,11 +38,11 @@ const FormTable = ({ tableData }) => {
                 <td>{data.gender}</td>
                 <td>{data.alamat}</td>
                 <td>{data.komentar}</td>
-                <td>
+                <td className="space-x-1">
                   {data.hobi.map((el, id) => (
                     <p
                       key={id}
-                      className="badge badge-outline font-bold text-xs mr-2"
+                      className="badge badge-outline font-bold text-xs"
                     >
                       {el}
                     </p>
