@@ -1,6 +1,7 @@
-import { useState, useEffect } from "react";
 import Select from "react-select";
 import supabase from "../helpers/supabase";
+import { useState, useEffect } from "react";
+import { ToastContainer, toast } from "react-toastify";
 
 export const defaultForm = {
   nim: "",
@@ -20,6 +21,7 @@ const defaultHobby = [
 
 const FormInput = ({ onUpdate }) => {
   const [data, setData] = useState(defaultForm);
+  const [isLoading, setIsLoading] = useState(false);
   useEffect(() => {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(({ coords }) => {
@@ -37,10 +39,21 @@ const FormInput = ({ onUpdate }) => {
   }
   function submitForm(e) {
     e.preventDefault();
+    setIsLoading(true);
     supabase
       .from("tk4")
       .insert([data])
-      .then(({ data }) => onUpdate(data[0]));
+      .then(({ data }) => {
+        onUpdate(data[0]);
+        setIsLoading();
+        toast.success("Submit Data Berhasil!");
+        setIsLoading(false);
+      })
+      .catch((err) => {
+        toast.error("Submit Data Gagal!");
+        console.error(err);
+        setIsLoading(false);
+      });
   }
   function resetForm() {
     document.getElementsByName("gender").forEach((el) => {
@@ -54,7 +67,7 @@ const FormInput = ({ onUpdate }) => {
       <h1 className="mb-2 text-left font-bold text-3xl antialiased tracking-wider font-display">
         INPUT DATA DIRI
       </h1>
-      <p className="mb-8 text-left font-light antialiased tracking-wider">
+      <p className="mb-8 text-left antialiased tracking-wider">
         Masukkan informasi data diri pada form yang disediakan
       </p>
       <div className="flex flex-row space-x-4">
@@ -153,11 +166,17 @@ const FormInput = ({ onUpdate }) => {
         </div>
       </div>
       <div className="flex justify-end">
-        <button className="btn btn-primary w-36 mr-2">Submit</button>
+        <button
+          className={`btn btn-primary w-36 mr-2 ${isLoading && "loading"}`}
+          disabled={isLoading}
+        >
+          Submit
+        </button>
         <label className="btn btn w-18" onClick={() => resetForm()}>
           Reset
         </label>
       </div>
+      <ToastContainer theme="colored" />
     </form>
   );
 };

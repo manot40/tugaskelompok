@@ -4,8 +4,8 @@ const FormTable = ({ tableData }) => {
       <h1 className="mb-2 text-left font-bold text-3xl antialiased tracking-wider font-display">
         TABEL DATA
       </h1>
-      <p className="mb-8 text-left font-light antialiased tracking-wider">
-        Daftar data-data mahasiswa yang suda di input
+      <p className="mb-8 text-left antialiased tracking-wider">
+        Daftar data mahasiswa yang sudah di input
       </p>
       <div className="overflow-x-auto">
         <table className="table w-full">
@@ -38,7 +38,16 @@ const FormTable = ({ tableData }) => {
                 <td>{data.gender}</td>
                 <td>{data.alamat}</td>
                 <td>{data.komentar}</td>
-                <td>{data.hobi.join(", ")}</td>
+                <td>
+                  {data.hobi.map((el, id) => (
+                    <p
+                      key={id}
+                      className="badge badge-outline font-bold text-xs mr-2"
+                    >
+                      {el}
+                    </p>
+                  ))}
+                </td>
                 <td>
                   <a
                     className="link link-hover link-accent"
