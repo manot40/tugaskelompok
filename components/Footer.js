@@ -14,7 +14,7 @@ const Footer = ({}) => {
             data-choose-theme
           >
             <option value="">Ikuti Sistem</option>
-            <option value="light">Terang</option>
+            <option value="light" selected>Terang</option>
             <option value="dark">Gelap</option>
             <option value="cyberpunk">CyberPunk</option>
           </select>
