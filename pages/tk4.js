@@ -12,12 +12,13 @@ const FormTK1 = () => {
       await supabase
         .from("tk4")
         .select("*")
+        .order("created_at", { ascending: false })
         .then(({ data }) => setTableData(data));
     })();
   }, [_changed]);
 
   function created(data) {
-    setTableData([...tableData, data]);
+    setTableData([data, ...tableData]);
   }
   function dispatch(action, data) {
     switch (action) {
