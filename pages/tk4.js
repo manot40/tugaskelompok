@@ -26,12 +26,13 @@ const FormTK1 = () => {
         supabase
           .from("tk4")
           .insert([data])
-          .then(() => {
-            toast.success("Submit Data Berhasil!");
+          .then(({ error }) => {
             changed(_changed + 1);
+            error
+              ? toast.error("Tambah Data Gagal")
+              : toast.success("Tambah Data Berhasil!");
             setIsLoading(false);
-          })
-          .catch(() => toast.error("Submit Data Gagal"));
+          });
         break;
       case "EDIT":
         setEditData(data);
@@ -42,11 +43,12 @@ const FormTK1 = () => {
           .from("tk4")
           .delete()
           .eq("id", data.id)
-          .then(() => {
-            toast.success("Hapus Data Berhasil!");
+          .then(({ error }) => {
             changed(_changed + 1);
-          })
-          .catch(() => toast.error("Submit Data Gagal"));
+            error
+              ? toast.error("Hapus Data Gagal")
+              : toast.success("Hapus Data Berhasil!");
+          });
         break;
       default:
         changed(_changed + 1);
