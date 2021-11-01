@@ -4,18 +4,20 @@ import { defaultHobby } from "./FormInput";
 import { useState, useEffect } from "react";
 
 const EditModal = ({ toBeModified, editDone }) => {
-  const [objId, setObjId] = useState(0);
   const [form, setForm] = useState({});
   useEffect(() => {
-    setObjId(toBeModified.id);
     setForm(toBeModified);
   }, [toBeModified])
 
+  function setHobi(arr) {
+    const hobi = arr.map((item) => item.label);
+    setForm({ ...form, hobi });
+  }
   function submitForm(e) {
     e.preventDefault();
     supabase.from("tk4")
       .update(form)
-      .eq('id', objId)
+      .eq('id', form.id)
       .then(() => {
         editDone();
         window.history.back();
@@ -135,7 +137,7 @@ const EditModal = ({ toBeModified, editDone }) => {
               </label>
             </div>
             <label
-              className="btn btn-error justify-end w-18"
+              className="btn btn-error justify-end"
               onClick={() => window.history.back()}
             >
               Close
