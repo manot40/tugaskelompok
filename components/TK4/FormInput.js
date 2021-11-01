@@ -1,7 +1,5 @@
 import Select from "react-select";
-import supabase from "../helpers/supabase";
 import { useState, useEffect } from "react";
-import { ToastContainer, toast } from "react-toastify";
 
 export const defaultForm = {
   nim: "",
@@ -12,53 +10,39 @@ export const defaultForm = {
   komentar: "",
   lokasi: [],
 };
-const defaultHobby = [
+export const defaultHobby = [
   { value: 0, label: "Membaca Buku" },
   { value: 1, label: "Menonton Film" },
   { value: 2, label: "Coding" },
   { value: 3, label: "Bermain Game" },
 ];
 
-const FormInput = ({ onCreated }) => {
-  const [data, setData] = useState(defaultForm);
-  const [isLoading, setIsLoading] = useState(false);
+const FormInput = ({ onCreated, isLoading = false }) => {
+  const [form, setForm] = useState(defaultForm);
   useEffect(() => {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(({ coords }) => {
         const lokasi = [coords.latitude, coords.longitude];
-        setData({ ...data, lokasi });
+        setForm({ ...form, lokasi });
       });
     } else {
-      setData({ ...data, lokasi: [0, 0] });
+      setForm({ ...form, lokasi: [0, 0] });
     }
   }, []);
 
   function setHobi(arr) {
     const hobi = arr.map((item) => item.label);
-    setData({ ...data, hobi });
+    setForm({ ...form, hobi });
   }
   function submitForm(e) {
     e.preventDefault();
-    setIsLoading(true);
-    supabase
-      .from("tk4")
-      .insert([data])
-      .then(({ data }) => {
-        toast.success("Submit Data Berhasil!");
-        onCreated(data[0]);
-        setIsLoading(false);
-      })
-      .catch((err) => {
-        toast.error("Submit Data Gagal!");
-        console.error(err);
-        setIsLoading(false);
-      });
+    onCreated("ADD", form);
   }
   function resetForm() {
     document.getElementsByName("gender").forEach((el) => {
       el.checked = false;
     });
-    setData(defaultForm);
+    setForm(defaultForm);
   }
 
   return (
@@ -77,8 +61,8 @@ const FormInput = ({ onCreated }) => {
           <input
             type="text"
             className="input input-bordered w-full"
-            value={data.nama}
-            onChange={(e) => setData({ ...data, nama: e.target.value })}
+            value={form.nama}
+            onChange={(e) => setForm({ ...form, nama: e.target.value })}
             required
           />
         </div>
@@ -89,35 +73,13 @@ const FormInput = ({ onCreated }) => {
           <input
             type="text"
             className="input input-bordered w-full"
-            value={data.nim}
-            onChange={(e) => setData({ ...data, nim: e.target.value })}
+            value={form.nim}
+            onChange={(e) => setForm({ ...form, nim: e.target.value })}
             required
           />
         </div>
       </div>
-      <div className="form-control mr-4 w-full block">
-        <label className="label">
-          <span className="label-text">Alamat Lengkap</span>
-        </label>
-        <textarea
-          className="textarea textarea-bordered w-full h-24"
-          value={data.alamat}
-          onChange={(e) => setData({ ...data, alamat: e.target.value })}
-          required
-        />
-      </div>
-      <div className="form-control mr-4 w-full block">
-        <label className="label">
-          <span className="label-text">Komentar</span>
-        </label>
-        <textarea
-          className="textarea textarea-bordered w-full h-24"
-          value={data.komentar}
-          onChange={(e) => setData({ ...data, komentar: e.target.value })}
-          required
-        />
-      </div>
-      <div className="flex flex-row sm:flex-col-reverse md:flex-col-reverse w-full mb-8">
+      <div className="flex flex-row sm:flex-col-reverse md:flex-col-reverse w-full mb-2">
         <div className="form-control min-w-max inline-block mr-4">
           <label className="label">
             <span className="label-text">Jenis Kelamin</span>
@@ -129,7 +91,7 @@ const FormInput = ({ onCreated }) => {
                 className="radio mr-2"
                 value="Pria"
                 name="gender"
-                onChange={(e) => setData({ ...data, gender: e.target.value })}
+                onChange={(e) => setForm({ ...form, gender: e.target.value })}
                 required
               />
               <span className="label-text">Pria</span>
@@ -141,7 +103,7 @@ const FormInput = ({ onCreated }) => {
                 className="radio mr-2"
                 value="Wanita"
                 name="gender"
-                onChange={(e) => setData({ ...data, gender: e.target.value })}
+                onChange={(e) => setForm({ ...form, gender: e.target.value })}
                 required
               />
               <span className="label-text">Wanita</span>
@@ -164,6 +126,28 @@ const FormInput = ({ onCreated }) => {
           />
         </div>
       </div>
+      <div className="form-control mr-4 w-full block">
+        <label className="label">
+          <span className="label-text">Alamat Lengkap</span>
+        </label>
+        <textarea
+          className="textarea textarea-bordered w-full h-24"
+          value={form.alamat}
+          onChange={(e) => setForm({ ...form, alamat: e.target.value })}
+          required
+        />
+      </div>
+      <div className="form-control mr-4 w-full block mb-8">
+        <label className="label">
+          <span className="label-text">Komentar</span>
+        </label>
+        <textarea
+          className="textarea textarea-bordered w-full h-24"
+          value={form.komentar}
+          onChange={(e) => setForm({ ...form, komentar: e.target.value })}
+          required
+        />
+      </div>
       <div className="flex justify-end">
         <button
           className={`btn btn-primary w-36 mr-2 ${isLoading && "loading"}`}
@@ -175,7 +159,6 @@ const FormInput = ({ onCreated }) => {
           Reset
         </label>
       </div>
-      <ToastContainer theme="colored" />
     </form>
   );
 };
