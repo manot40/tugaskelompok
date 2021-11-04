@@ -1,10 +1,18 @@
+import { useState } from "react";
+import { defaultForm } from "./FormInput";
+import EditModal from "./EditModal";
+
 const FormTable = ({ tableData, onModify }) => {
+  const [editData, setEditData] = useState(defaultForm);
   function handleAction(action, e) {
     const index =
       e.target.localName === "ion-icon"
         ? e.target.parentElement.id
         : e.target.id;
-    onModify(action, tableData[index]);
+    action === "DELETE"
+      ? onModify(action, tableData[index])
+      : (setEditData(tableData[index]),
+        document.getElementById("editBtn").click());
   }
 
   return (
@@ -98,6 +106,7 @@ const FormTable = ({ tableData, onModify }) => {
           </tbody>
         </table>
       </div>
+      <EditModal toBeModified={editData} editDone={onModify} />
     </div>
   );
 };

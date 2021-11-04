@@ -79,7 +79,7 @@ const FormInput = ({ onCreated, isLoading = false }) => {
           />
         </div>
       </div>
-      <div className="flex flex-row sm:flex-col-reverse md:flex-col-reverse w-full mb-2">
+      <div className="flex flex-row sm:flex-col md:flex-col w-full mb-2">
         <div className="form-control min-w-max inline-block mr-4">
           <label className="label">
             <span className="label-text">Jenis Kelamin</span>

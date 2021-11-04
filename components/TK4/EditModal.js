@@ -1,13 +1,12 @@
 import Select from "react-select";
-import supabase from "../helpers/supabase";
-import { defaultHobby } from "./FormInput";
+import { defaultForm, defaultHobby } from "./FormInput";
 import { useState, useEffect } from "react";
 
 const EditModal = ({ toBeModified, editDone }) => {
-  const [form, setForm] = useState({});
+  const [form, setForm] = useState(defaultForm);
   useEffect(() => {
     setForm(toBeModified);
-  }, [toBeModified])
+  }, [toBeModified]);
 
   function setHobi(arr) {
     const hobi = arr.map((item) => item.label);
@@ -15,13 +14,13 @@ const EditModal = ({ toBeModified, editDone }) => {
   }
   function submitForm(e) {
     e.preventDefault();
-    supabase.from("tk4")
-      .update(form)
-      .eq('id', form.id)
-      .then(() => {
-        editDone();
-        window.history.back();
-      });
+    editDone("EDIT", form);
+  }
+  function resetForm() {
+    document.getElementsByName("gender").forEach((el) => {
+      el.checked = false;
+    });
+    setForm(defaultForm);
   }
 
   return (
@@ -58,7 +57,7 @@ const EditModal = ({ toBeModified, editDone }) => {
               />
             </div>
           </div>
-          <div className="flex flex-row sm:flex-col-reverse md:flex-col-reverse w-full mb-2">
+          <div className="flex flex-row sm:flex-col md:flex-col w-full mb-2">
             <div className="form-control min-w-max inline-block mr-4">
               <label className="label">
                 <span className="label-text">Jenis Kelamin</span>
@@ -70,7 +69,10 @@ const EditModal = ({ toBeModified, editDone }) => {
                     className="radio mr-2"
                     value="Pria"
                     name="gender"
-                    onChange={(e) => setForm({ ...form, gender: e.target.value })}
+                    onChange={(e) =>
+                      setForm({ ...form, gender: e.target.value })
+                    }
+                    checked={form.gender === "Pria"}
                     required
                   />
                   <span className="label-text">Pria</span>
@@ -82,7 +84,10 @@ const EditModal = ({ toBeModified, editDone }) => {
                     className="radio mr-2"
                     value="Wanita"
                     name="gender"
-                    onChange={(e) => setForm({ ...form, gender: e.target.value })}
+                    onChange={(e) =>
+                      setForm({ ...form, gender: e.target.value })
+                    }
+                    checked={form.gender === "Wanita"}
                     required
                   />
                   <span className="label-text">Wanita</span>
@@ -129,9 +134,7 @@ const EditModal = ({ toBeModified, editDone }) => {
           </div>
           <div className="flex justify-between">
             <div className="flex">
-              <button className="btn btn-primary w-36 mr-2">
-                Submit
-              </button>
+              <button className="btn btn-primary w-36 mr-2">Submit</button>
               <label className="btn w-18" onClick={() => resetForm()}>
                 Reset
               </label>

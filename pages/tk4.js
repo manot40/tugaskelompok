@@ -1,14 +1,12 @@
 import { useState, useEffect } from "react";
 import FormInput from "../components/TK4/FormInput";
 import FormTable from "../components/TK4/FormTable";
-import EditModal from "../components/TK4/EditModal";
 import supabase from "../components/helpers/supabase";
 import { ToastContainer, toast } from "react-toastify";
 
 const FormTK1 = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [tableData, setTableData] = useState([]);
-  const [editData, setEditData] = useState({});
   const [_changed, changed] = useState(0);
 
   useEffect(() => {
@@ -35,8 +33,16 @@ const FormTK1 = () => {
           });
         break;
       case "EDIT":
-        setEditData(data);
-        document.getElementById('editBtn').click();
+        supabase
+          .from("tk4")
+          .update(data)
+          .eq("id", data.id)
+          .then(({ error }) => {
+            changed(_changed + 1);
+            error
+              ? toast.error("Hapus Data Gagal")
+              : (toast.success("Hapus Data Berhasil!"), window.history.back());
+          });
         break;
       case "DELETE":
         supabase
@@ -65,7 +71,6 @@ const FormTK1 = () => {
         <div className="divider" />
         <FormTable tableData={tableData} onModify={dispatch} />
       </div>
-      <EditModal toBeModified={editData} editDone={dispatch} />
       <ToastContainer theme="colored" />
     </div>
   );
